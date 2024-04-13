@@ -28,6 +28,7 @@ This project is a simple Java web application developed using Spring Boot. It se
 - MySQL
 - Redis (for caching)
 - Maven
+- lombok
 
 [Add any other relevant technologies used in the project.]
 
