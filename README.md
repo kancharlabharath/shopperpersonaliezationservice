@@ -62,14 +62,3 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
 
 [Provide instructions for running the unit tests and any other testing procedures.]
 
-## Contributing
-
-[Explain how others can contribute to the project, including guidelines for submitting pull requests, reporting issues, etc.]
-
-## License
-
-[Specify the license under which the project is released.]
-
-## Contact
-
-[Provide contact information for the project maintainer(s) or contributors.]
