@@ -12,9 +12,6 @@ This project is a simple Java web application developed using Spring Boot. It se
 - [Usage](#usage)
 - [Endpoints](#endpoints)
 - [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Introduction
 
