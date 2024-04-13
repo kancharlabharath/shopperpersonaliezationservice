@@ -52,7 +52,7 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
 
 ### Example:
 
-### 1. Add Product
+### 1.  Product
 - Endpoint: `POST /api/addProducts`
 - Description: Adds a list of products to the database.
 - Request Body: JSON array of product objects.
