@@ -70,6 +70,21 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
   },
   ...
 ]
+### 2. Fetch All Products with Pagination
+  - Endpoint: `GET http://localhost:8080/api/fetchAllProductsPagenation?page=1&size=10`
+  - Description: Retrieves a paginated list of products.
+  - Query Parameters:
+    - `page`: Page number (default: 0)
+    - `size`: Page size (default: 10)
+  - Response: JSON array of product objects.
+```json
+[
+    {
+        "id": 1,
+        "productId": "BG-419110951",
+        "category": "Babies",
+        "brand": "Girlds"
+    },
 
 [List and describe the available endpoints of the REST API, including their methods, parameters, and responses.]
 
