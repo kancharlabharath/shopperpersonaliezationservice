@@ -46,8 +46,11 @@ This project is a simple Java web application developed using Spring Boot. It se
 ## Endpoints
 
 http://localhost:8080/api/addProducts[post]
+
 http://localhost:8080/api/fetchAllProductsPagenation?page=2&size =10[get]
+
 http://localhost:8080/shelves/getAll[get]
+
 http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
 
 
@@ -89,6 +92,56 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
     },
 
 [List and describe the available endpoints of the REST API, including their methods, parameters, and responses.]
+
+## Examples:
+
+### 3. Get All Shelves
+
+- **Endpoint:** GET /shelves/getAll
+- **Description:** Retrieves all shelves along with their products.
+- **Response:**
+```json
+[
+    {
+        "id": 1,
+        "shopperId": "1000",
+        "shelf": [
+            {
+                "id": 1,
+                "productId": "MB-2093193398",
+                "relevancyScore": 31.089209569320897
+            },
+            {
+                "id": 2,
+                "productId": "BB-2144746855",
+                "relevancyScore": 55.16626010671777
+            }
+        ]
+    }
+]
+
+## Examples:
+
+### 4. Add Shelves by Shopper ID
+
+- **Endpoint:** POST /shelves/addShelvesByShopperId/{shopperId}
+- **Description:** Adds shelves with products for a specific shopper.
+- **Path Parameters:**
+  - `shopperId`: The ID of the shopper.
+- **Request Body:** JSON object containing a list of shelf items.
+```json
+{
+  "shelf": [
+    {
+      "productId": "MB-2093193398",
+      "relevancyScore": 31.089209569320897
+    },
+    {
+      "productId": "BB-2144746855",
+      "relevancyScore": 55.16626010671777
+    }
+  ]
+}
 
 
 
