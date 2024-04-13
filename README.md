@@ -1,3 +1,4 @@
+
 # Project Name shopperpersonaliezationservice
 
 This project is a simple Java web application developed using Spring Boot. It serves as a template for creating RESTful APIs and includes basic functionalities such as user authentication, CRUD operations, and data caching. The project is designed to be easily customizable and extensible, making it suitable for various web application development needs.
