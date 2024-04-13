@@ -1,4 +1,4 @@
-# Project Name
+# Project Name shopperpersonaliezationservice
 
 This project is a [brief description of the project].
 
