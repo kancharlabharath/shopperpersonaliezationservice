@@ -44,6 +44,12 @@ This project is a simple Java web application developed using Spring Boot. It se
 
 ## Endpoints
 
+http://localhost:8080/api/addProducts[post]
+http://localhost:8080/api/fetchAllProductsPagenation?page=2&size =10[get]
+http://localhost:8080/shelves/getAll[get]
+http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
+
+
 ### Example:
 
 - **GET /api/products**: Retrieve a list of all products.
