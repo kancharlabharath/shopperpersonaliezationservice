@@ -70,7 +70,6 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
   },
   ...
 ]
-### Example:
 
 ### 2. Fetch All Products with Pagination
   - Endpoint: `GET http://localhost:8080/api/fetchAllProductsPagenation?page=1&size=10`
@@ -89,6 +88,8 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
     },
 
 [List and describe the available endpoints of the REST API, including their methods, parameters, and responses.]
+
+
 
 ## Testing
 
