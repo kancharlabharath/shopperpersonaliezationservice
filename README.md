@@ -52,9 +52,24 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
 
 ### Example:
 
-- **GET /api/products**: Retrieve a list of all products.
-  - Parameters: None
-  - Response: JSON array of product objects.
+### 1. Add Product
+- Endpoint: `POST /api/addProducts`
+- Description: Adds a list of products to the database.
+- Request Body: JSON array of product objects.
+```json
+[
+  {
+    "productId": "BG-419110951",
+    "category": "Babies",
+    "brand": "Girlds"
+  },
+  {
+    "productId": "BG-419110952",
+    "category": "Babies",
+    "brand": "Girlds"
+  },
+  ...
+]
 
 [List and describe the available endpoints of the REST API, including their methods, parameters, and responses.]
 
