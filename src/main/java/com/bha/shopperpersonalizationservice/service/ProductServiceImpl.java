@@ -78,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	
-
+        @Transactional
 	public ResponseEntity<?> saveShopperProductList(String shopperId, ShopperProductRequestDTO shopperProductRequest) {
 
 		logger.info("Saving shopper product list for shopperId: {}", shopperId);
