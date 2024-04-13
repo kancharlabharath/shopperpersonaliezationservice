@@ -15,11 +15,10 @@ This project is a simple Java web application developed using Spring Boot. It se
 
 ## Introduction
 
-[Provide an overview of the project, its purpose, and its significance.]
 
 ## Features
 
-- [List the main features of the project, highlighting its functionalities.]
+
 
 ## Technologies Used
 
