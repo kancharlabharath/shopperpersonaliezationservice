@@ -70,6 +70,8 @@ http://localhost:8080/shelves/addShelvesByShopperId/2000[post]
   },
   ...
 ]
+### Example:
+
 ### 2. Fetch All Products with Pagination
   - Endpoint: `GET http://localhost:8080/api/fetchAllProductsPagenation?page=1&size=10`
   - Description: Retrieves a paginated list of products.
