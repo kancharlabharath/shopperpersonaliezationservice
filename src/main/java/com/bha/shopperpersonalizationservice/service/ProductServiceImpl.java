@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bha.shopperpersonalizationservice.dto.ProductMetadataRequestDTO;
 import com.bha.shopperpersonalizationservice.dto.ShopperProductRequestDTO;
@@ -51,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
 	
 
 	@CacheEvict(allEntries = true)
+	@Transactional
 	public void addProductMetadata(List<ProductMetadataRequestDTO> productMetadataRequestDTOList) {
 
 		logger.info("Adding product metadata for {} products", productMetadataRequestDTOList.size());
