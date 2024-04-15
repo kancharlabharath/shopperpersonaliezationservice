@@ -31,9 +31,9 @@ import com.bha.shopperpersonalizationservice.repository.ShopperRepository;
 @Service
 @CacheConfig(cacheNames = "products")
 public class ProductServiceImpl implements ProductService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 
@@ -42,14 +42,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ShopperRepository shopperRepository;
-	
+
 	@Cacheable
 	public Page<Product> getProducts(Pageable pageable) {
 		logger.info("Fetching products from database with pagination: {}", pageable);
-	    return productRepository.findAll(pageable);
+		return productRepository.findAll(pageable);
 	}
-
-	
 
 	@CacheEvict(allEntries = true)
 	@Transactional
@@ -76,14 +74,8 @@ public class ProductServiceImpl implements ProductService {
 			productRepository.save(product);
 		}
 	}
-	
-	
-<<<<<<< HEAD
 
 	@Transactional
-=======
-        @Transactional
->>>>>>> 43888c4f493ef2f3cefed93d2b3f83eec5430f49
 	public ResponseEntity<?> saveShopperProductList(String shopperId, ShopperProductRequestDTO shopperProductRequest) {
 
 		logger.info("Saving shopper product list for shopperId: {}", shopperId);
@@ -132,6 +124,5 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> findByBrand(String brand) {
 		return productRepository.findByBrand(brand);
 	}
-	
-	
+
 }
