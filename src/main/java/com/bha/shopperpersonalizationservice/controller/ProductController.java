@@ -50,7 +50,6 @@ public class ProductController {
 		logger.info("Adding product metadata: {}", productMetadataRequestDTO);
 		productService.addProductMetadata(productMetadataRequestDTO);
 		return ResponseEntity.ok("Product metadata added successfully");
-		//add
 	}
 
 	/*
