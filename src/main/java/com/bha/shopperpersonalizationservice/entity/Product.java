@@ -13,10 +13,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String productId;
-    private String category;
-    private String brand;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String productId;
+	private String category;
+	private String brand;
+
+	// Constructor accepting three String parameters
+	public Product(String productId, String category, String brand) {
+		this.productId = productId;
+		this.category = category;
+		this.brand = brand;
+	}
 }

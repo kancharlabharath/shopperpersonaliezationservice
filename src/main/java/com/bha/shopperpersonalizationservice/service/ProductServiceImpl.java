@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bha.shopperpersonalizationservice.dto.ProductMetadataRequestDTO;
 import com.bha.shopperpersonalizationservice.dto.ShopperProductRequestDTO;
 import com.bha.shopperpersonalizationservice.entity.Product;
-import com.bha.shopperpersonalizationservice.entity.ProductShelf;
 import com.bha.shopperpersonalizationservice.entity.Shelf;
 import com.bha.shopperpersonalizationservice.entity.Shopper;
 import com.bha.shopperpersonalizationservice.exceptionHandler.BadRequestException;
@@ -33,6 +33,9 @@ import com.bha.shopperpersonalizationservice.repository.ShopperRepository;
 public class ProductServiceImpl implements ProductService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -52,53 +55,41 @@ public class ProductServiceImpl implements ProductService {
 	@CacheEvict(allEntries = true)
 	@Transactional
 	public void addProductMetadata(List<ProductMetadataRequestDTO> productMetadataRequestDTOList) {
-
 		logger.info("Adding product metadata for {} products", productMetadataRequestDTOList.size());
+
 		// Check if the list is null or empty
 		if (productMetadataRequestDTOList == null || productMetadataRequestDTOList.isEmpty()) {
 			throw new BadRequestException("Product metadata request list cannot be null or empty");
 		}
 
-		// Iterate over the list and add each product metadata
-		for (ProductMetadataRequestDTO productMetadataRequestDTO : productMetadataRequestDTOList) {
-			// If any item in the list is null or missing productId, throw
-			// BadRequestException
-			if (productMetadataRequestDTO == null || productMetadataRequestDTO.getProductId() == null) {
-				throw new BadRequestException("Product metadata request cannot be null");
-			}
+		// Map ProductMetadataRequestDTO to Product entities using ModelMapper
+		List<Product> products = productMetadataRequestDTOList.stream().map(dto -> modelMapper.map(dto, Product.class))
+				.collect(Collectors.toList());
 
-			Product product = new Product();
-			product.setBrand(productMetadataRequestDTO.getBrand());
-			product.setCategory(productMetadataRequestDTO.getCategory());
-			product.setProductId(productMetadataRequestDTO.getProductId());
-			productRepository.save(product);
-		}
+		// Save all products
+		productRepository.saveAll(products);
 	}
 
 	@Transactional
 	public ResponseEntity<?> saveShopperProductList(String shopperId, ShopperProductRequestDTO shopperProductRequest) {
-
 		logger.info("Saving shopper product list for shopperId: {}", shopperId);
+
 		// Retrieve or create a Shelf entity for the given shopperId
 		Optional<Shopper> findByShopperId = shopperRepository.findByShopperId(shopperId);
 		if (findByShopperId.isPresent()) {
 			Shelf shelf = new Shelf();
 			shelf.setShopperId(shopperId);
-			Shelf save = shelfRepository.save(shelf);
 
-			List<ProductShelf> productShelves = shopperProductRequest.getShelf().stream().map(shelfItemDTO -> {
-				ProductShelf productShelf = new ProductShelf();
-				productShelf.setProductId(shelfItemDTO.getProductId());
-				productShelf.setRelevancyScore(shelfItemDTO.getRelevancyScore());
-				return productShelf;
-			}).collect(Collectors.toList());
+			// Map ShopperProductRequestDTO to Shelf entity using ModelMapper
+			modelMapper.map(shopperProductRequest, shelf);
 
-			shelf.setShelf(productShelves);
-			shelfRepository.save(shelf);
+			// Save the Shelf entity
+			Shelf savedShelf = shelfRepository.save(shelf);
+
 			return new ResponseEntity<>(HttpStatus.CREATED);
-		} else
+		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
+		}
 	}
 
 	public List<Product> getProductsByCategoryAndBrand(String category, String brand) {
@@ -123,6 +114,12 @@ public class ProductServiceImpl implements ProductService {
 
 	public List<Product> findByBrand(String brand) {
 		return productRepository.findByBrand(brand);
+	}
+
+	@Transactional
+	@Override
+	public Page<Product> getPersonalizedProducts(String category, String brand, String productId, Pageable pageable) {
+		return productRepository.findByCategoryAndBrandAndProductId(category, brand, productId, pageable);
 	}
 
 }

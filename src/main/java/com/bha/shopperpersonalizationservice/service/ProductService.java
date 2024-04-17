@@ -27,6 +27,9 @@ public interface ProductService {
 	  
 	  ResponseEntity<?> saveShopperProductList(String shpperId,
 	  ShopperProductRequestDTO shopperProductRequest);
-	 
-
+	  
+	  
+	  
+	  //Ecom
+	  Page<Product> getPersonalizedProducts(String category, String brand, String productId, Pageable pageable);
 }

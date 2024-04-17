@@ -11,7 +11,7 @@ import com.bha.shopperpersonalizationservice.entity.Shopper;
 import com.bha.shopperpersonalizationservice.repository.ShopperRepository;
 
 @Service
-public class ShopperServiceImpl {
+public class ShopperServiceImpl implements ShopperService {
 	private static final Logger logger = LoggerFactory.getLogger(ShopperServiceImpl.class);
 
 	@Autowired
